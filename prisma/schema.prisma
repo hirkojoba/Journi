@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Trip {
+  id          String      @id @default(uuid())
+  destination String
+  startDate   DateTime
+  endDate     DateTime
+  budget      Int
+  vibe        String
+  createdAt   DateTime    @default(now())
+  flights     Flight[]
+  hotels      Hotel[]
+  itinerary   Itinerary?
+}
+
+model Flight {
+  id         String @id @default(uuid())
+  tripId     String
+  airline    String
+  price      Int
+  departTime String
+  arriveTime String
+  duration   String
+  stopovers  Int
+  trip       Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
+
+model Hotel {
+  id            String @id @default(uuid())
+  tripId        String
+  name          String
+  pricePerNight Int
+  rating        Float
+  location      String
+  trip          Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
+
+model Itinerary {
+  id       String @id @default(uuid())
+  tripId   String @unique
+  jsonData String // SQLite doesn't have Json type, so we use String
+  trip     Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}

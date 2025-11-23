@@ -1,0 +1,12 @@
+{
+  "routes": [],
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "platform": {
+    "apiRuntime": "node:18"
+  },
+  "globalHeaders": {
+    "cache-control": "must-revalidate, max-age=6000"
+  }
+}

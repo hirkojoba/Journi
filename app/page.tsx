@@ -16,19 +16,13 @@ export default function Home() {
           and generate your personalized itinerary.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <div className="mb-16">
           <Link
             href="/planner"
-            className="px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+            className="inline-block px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
           >
             Plan Your Trip
           </Link>
-          <a
-            href="#features"
-            className="px-8 py-4 border-2 border-blue-600 text-blue-600 text-lg font-semibold rounded-lg hover:bg-blue-50 transition-colors"
-          >
-            Learn More
-          </a>
         </div>
 
         {/* Features Section */}

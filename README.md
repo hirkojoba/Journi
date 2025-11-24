@@ -1,29 +1,15 @@
-# Journi - AI-Powered Travel Planner
+# Journi
 
-A full-stack web application that allows users to plan trips using screenshot uploads. The system extracts structured travel information, identifies the best travel options, generates optimized itineraries, and produces downloadable trip PDFs.
+An AI-powered travel planner that lets you upload screenshots of flights and hotels. The app figures out the best options for you and builds a custom itinerary based on your budget and preferences.
 
-## Features
+## What it does
 
-- **Screenshot Upload**: Upload screenshots of flight/hotel listings
-- **AI Vision Parsing**: Automatically extract prices, times, and details from screenshots
-- **Smart Recommendations**: Get ranked flight and hotel options based on price, duration, and ratings
-- **AI-Generated Itineraries**: Receive personalized day-by-day travel plans
-- **PDF Export**: Download your complete travel plan as a PDF
+- Upload screenshots of flight and hotel options
+- AI extracts all the details automatically
+- Get recommendations ranked by price, duration, and ratings
+- Generate a personalized day-by-day itinerary
+- Export everything as a PDF
 
-## Tech Stack
+## Built with
 
-- **Frontend**: Next.js 14, React, TypeScript, Tailwind CSS
-- **Backend**: Next.js API Routes (Node.js)
-- **Database**: Prisma ORM with SQLite (local) / Azure SQL (production)
-- **AI**: OpenAI GPT-4o mini (Vision & Text)
-- **PDF Generation**: pdf-lib
-- **Deployment**: Railway / Azure App Service
-
-## Deployment
-
-### Environment Variables
-
-Set these in your deployment platform:
-- `DATABASE_URL`: Database connection string
-- `OPENAI_API_KEY`: Your OpenAI API key
-- `NEXT_PUBLIC_BASE_URL`: Your production URL
+Next.js, React, TypeScript, Tailwind CSS, Prisma, and OpenAI

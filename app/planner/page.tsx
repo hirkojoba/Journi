@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import FileUpload from '../components/FileUpload';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import axios from 'axios';
+import { rankFlights, rankHotels } from '@/lib/recommendation-engine';
 
 type Step = 'upload' | 'preferences' | 'recommendations' | 'itinerary';
 
@@ -32,6 +33,8 @@ export default function PlannerPage() {
   // Data state
   const [flights, setFlights] = useState<FlightData[]>([]);
   const [hotels, setHotels] = useState<HotelData[]>([]);
+  const [selectedFlightIndex, setSelectedFlightIndex] = useState<number>(0);
+  const [selectedHotelIndex, setSelectedHotelIndex] = useState<number>(0);
   const [preferences, setPreferences] = useState({
     budget: 2000,
     vibe: 'adventure',
@@ -44,6 +47,10 @@ export default function PlannerPage() {
   const [endDate, setEndDate] = useState('');
   const [itineraryData, setItineraryData] = useState<any>(null);
   const [tripId, setTripId] = useState<string | null>(null);
+
+  // Rank flights and hotels
+  const rankedFlights = useMemo(() => rankFlights(flights), [flights]);
+  const rankedHotels = useMemo(() => rankHotels(hotels, preferences.vibe), [hotels, preferences.vibe]);
 
   const handleFileUpload = async (file: File) => {
     setIsLoading(true);
@@ -84,12 +91,16 @@ export default function PlannerPage() {
     try {
       const dates = generateDateRange(startDate, endDate);
 
+      // Use selected flight and hotel based on user's choice
+      const selectedFlight = rankedFlights[selectedFlightIndex] || null;
+      const selectedHotel = rankedHotels[selectedHotelIndex] || null;
+
       const response = await axios.post('/api/itinerary', {
         destination,
         dates,
         preferences,
-        flights,
-        hotels,
+        flights: selectedFlight ? [selectedFlight] : [],
+        hotels: selectedHotel ? [selectedHotel] : [],
       });
 
       setItineraryData(response.data);
@@ -316,24 +327,68 @@ export default function PlannerPage() {
         {/* Step 3: Recommendations */}
         {currentStep === 'recommendations' && (
           <div className="space-y-6">
-            {flights.length > 0 && (
-              <Card title="Recommended Flight">
-                <div className="p-4 bg-blue-50 rounded-lg">
-                  <p className="font-semibold text-lg text-gray-900">{flights[0].airline}</p>
-                  <p className="text-gray-700">{flights[0].departure_time} - {flights[0].arrival_time}</p>
-                  <p className="text-gray-600">Duration: {flights[0].duration}</p>
-                  <p className="text-2xl font-bold text-blue-600 mt-2">${flights[0].price}</p>
+            {rankedFlights.length > 0 && (
+              <Card title="Flight Options (Ranked)">
+                <p className="text-sm text-gray-600 mb-4">Select your preferred flight. Options are ranked from best to good value.</p>
+                <div className="space-y-3">
+                  {rankedFlights.map((flight, index) => (
+                    <div
+                      key={index}
+                      onClick={() => setSelectedFlightIndex(index)}
+                      className={`p-4 rounded-lg cursor-pointer transition-all ${
+                        selectedFlightIndex === index
+                          ? 'bg-blue-100 border-2 border-blue-600'
+                          : 'bg-blue-50 border-2 border-transparent hover:border-blue-300'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold text-lg text-gray-900">{flight.airline}</p>
+                            {index === 0 && (
+                              <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">BEST VALUE</span>
+                            )}
+                          </div>
+                          <p className="text-gray-700">{flight.departure_time} - {flight.arrival_time}</p>
+                          <p className="text-gray-600 text-sm">Duration: {flight.duration} • {flight.stopovers === 0 ? 'Direct' : `${flight.stopovers} stop(s)`}</p>
+                        </div>
+                        <p className="text-2xl font-bold text-blue-600">${flight.price}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </Card>
             )}
 
-            {hotels.length > 0 && (
-              <Card title="Recommended Hotel">
-                <div className="p-4 bg-green-50 rounded-lg">
-                  <p className="font-semibold text-lg text-gray-900">{hotels[0].name}</p>
-                  <p className="text-gray-700">{hotels[0].location}</p>
-                  <p className="text-gray-600">Rating: {hotels[0].rating}/5</p>
-                  <p className="text-2xl font-bold text-green-600 mt-2">${hotels[0].price_per_night}/night</p>
+            {rankedHotels.length > 0 && (
+              <Card title="Hotel Options (Ranked)">
+                <p className="text-sm text-gray-600 mb-4">Select your preferred hotel. Options are ranked from best to good value.</p>
+                <div className="space-y-3">
+                  {rankedHotels.map((hotel, index) => (
+                    <div
+                      key={index}
+                      onClick={() => setSelectedHotelIndex(index)}
+                      className={`p-4 rounded-lg cursor-pointer transition-all ${
+                        selectedHotelIndex === index
+                          ? 'bg-green-100 border-2 border-green-600'
+                          : 'bg-green-50 border-2 border-transparent hover:border-green-300'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold text-lg text-gray-900">{hotel.name}</p>
+                            {index === 0 && (
+                              <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">BEST VALUE</span>
+                            )}
+                          </div>
+                          <p className="text-gray-700">{hotel.location}</p>
+                          <p className="text-gray-600 text-sm">Rating: {hotel.rating}/5 ⭐</p>
+                        </div>
+                        <p className="text-2xl font-bold text-green-600">${hotel.price_per_night || hotel.pricePerNight}/night</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </Card>
             )}

@@ -34,11 +34,11 @@ function parseDuration(duration: string): number {
 }
 
 /**
- * Rank and select best flight option
+ * Rank all flights and return them sorted by score
  */
-export function selectBestFlight(flights: any[]): any | null {
-  if (!flights || flights.length === 0) return null;
-  if (flights.length === 1) return flights[0];
+export function rankFlights(flights: any[]): any[] {
+  if (!flights || flights.length === 0) return [];
+  if (flights.length === 1) return flights;
 
   const prices = flights.map((f) => f.price);
   const minPrice = Math.min(...prices);
@@ -61,19 +61,27 @@ export function selectBestFlight(flights: any[]): any | null {
       durationScore * FLIGHT_WEIGHTS.duration +
       stopoverScore * FLIGHT_WEIGHTS.stopover;
 
-    return { flight, score: totalScore };
+    return { ...flight, score: totalScore };
   });
 
   scores.sort((a, b) => b.score - a.score);
-  return scores[0].flight;
+  return scores;
 }
 
 /**
- * Rank and select best hotel option
+ * Rank and select best flight option
  */
-export function selectBestHotel(hotels: any[], vibe?: string): any | null {
-  if (!hotels || hotels.length === 0) return null;
-  if (hotels.length === 1) return hotels[0];
+export function selectBestFlight(flights: any[]): any | null {
+  const ranked = rankFlights(flights);
+  return ranked.length > 0 ? ranked[0] : null;
+}
+
+/**
+ * Rank all hotels and return them sorted by score
+ */
+export function rankHotels(hotels: any[], vibe?: string): any[] {
+  if (!hotels || hotels.length === 0) return [];
+  if (hotels.length === 1) return hotels;
 
   const prices = hotels.map((h) => h.price_per_night || h.pricePerNight);
   const minPrice = Math.min(...prices);
@@ -104,11 +112,19 @@ export function selectBestHotel(hotels: any[], vibe?: string): any | null {
       ratingScore * HOTEL_WEIGHTS.rating +
       locationScore * HOTEL_WEIGHTS.location;
 
-    return { hotel, score: totalScore };
+    return { ...hotel, score: totalScore };
   });
 
   scores.sort((a, b) => b.score - a.score);
-  return scores[0].hotel;
+  return scores;
+}
+
+/**
+ * Rank and select best hotel option
+ */
+export function selectBestHotel(hotels: any[], vibe?: string): any | null {
+  const ranked = rankHotels(hotels, vibe);
+  return ranked.length > 0 ? ranked[0] : null;
 }
 
 /**

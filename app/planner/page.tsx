@@ -140,12 +140,35 @@ export default function PlannerPage() {
     return dates;
   };
 
+  // Get background image based on current step
+  const getBackgroundImage = () => {
+    const backgrounds = {
+      upload: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2000', // Tropical beach with palm trees
+      preferences: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2000', // City skyline
+      recommendations: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000', // Mountains
+      itinerary: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=2000', // Paris architecture
+    };
+    return backgrounds[currentStep];
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div
+      className="min-h-screen py-12 px-4 relative"
+      style={{
+        backgroundImage: `url(${getBackgroundImage()})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-gray-900 mb-2">Journi</h1>
-          <p className="text-gray-600">AI-Powered Travel Planning</p>
+          <h1 className="text-5xl font-bold text-white mb-2 drop-shadow-lg">Journi</h1>
+          <p className="text-white drop-shadow-md">AI-Powered Travel Planning</p>
         </div>
 
         {/* Step Indicator */}
@@ -155,12 +178,12 @@ export default function PlannerPage() {
               <div
                 className={`
                   w-10 h-10 rounded-full flex items-center justify-center font-semibold
-                  ${currentStep === step ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'}
+                  ${currentStep === step ? 'bg-blue-600 text-white' : 'bg-white/80 text-gray-800'}
                 `}
               >
                 {index + 1}
               </div>
-              {index < 3 && <div className="w-16 h-1 bg-gray-300 mx-2" />}
+              {index < 3 && <div className="w-16 h-1 bg-white/60 mx-2" />}
             </div>
           ))}
         </div>

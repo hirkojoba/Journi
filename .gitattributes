@@ -1,0 +1,22 @@
+# Exclude screenshots and media from language statistics
+screenshots/** linguist-vendored
+*.jpeg linguist-vendored
+*.jpg linguist-vendored
+*.png linguist-vendored
+*.gif linguist-vendored
+*.svg linguist-vendored
+
+# Exclude metadata files
+*.Zone.Identifier linguist-generated
+
+# Mark documentation
+*.md linguist-documentation
+
+# Ensure all code languages are detected
+*.ts linguist-detectable=true linguist-language=TypeScript
+*.tsx linguist-detectable=true linguist-language=TypeScript
+*.js linguist-detectable=true linguist-language=JavaScript
+*.jsx linguist-detectable=true linguist-language=JavaScript
+*.css linguist-detectable=true linguist-language=CSS
+*.prisma linguist-detectable=true linguist-language=Prisma
+*.json linguist-detectable=true linguist-language=JSON

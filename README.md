@@ -10,6 +10,6 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 - Generate a personalized day-by-day itinerary
 - Export everything as a PDF
 
-## Built with
+## Tech Stack
 
 Next.js, React, JavaScript, TypeScript, Tailwind CSS, Node.js, Prisma, SQLite, OpenAI API, pdf-lib

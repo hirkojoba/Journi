@@ -95,11 +95,9 @@ User preferences:
 - Purpose: ${preferences.purpose || 'leisure'}
 - Food preferences: ${preferences.food?.join(', ') || 'flexible'}
 - Pace: ${preferences.pace || 'medium'}
-${preferences.allInclusive ? '- Package Type: ALL-INCLUSIVE (flight, hotel, meals, and activities included)' : ''}
 
-${!preferences.allInclusive && selectedFlight ? `Selected flight: ${selectedFlight.airline}, $${selectedFlight.price}` : ''}
-${!preferences.allInclusive && selectedHotel ? `Selected hotel: ${selectedHotel.name}, $${selectedHotel.pricePerNight}/night for ${numDays} nights = $${hotelCost}` : ''}
-${preferences.allInclusive ? 'This is an all-inclusive package. Include flight, hotel, all meals, drinks, and activities in the itinerary planning.' : ''}
+${selectedFlight ? `Selected flight: ${selectedFlight.airline}, $${selectedFlight.price}` : ''}
+${selectedHotel ? `Selected hotel: ${selectedHotel.name}, $${selectedHotel.pricePerNight}/night for ${numDays} nights = $${hotelCost}` : ''}
 
 BUDGET BREAKDOWN:
 - Flight cost: $${flightCost}

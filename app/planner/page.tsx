@@ -41,7 +41,6 @@ export default function PlannerPage() {
     purpose: 'leisure',
     food: [] as string[],
     pace: 'medium',
-    allInclusive: false,
   });
   const [destination, setDestination] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -77,13 +76,7 @@ export default function PlannerPage() {
 
   const handlePreferencesSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // If all-inclusive, skip recommendations and generate itinerary directly
-    if (preferences.allInclusive) {
-      await handleGenerateItinerary();
-    } else {
-      setCurrentStep('recommendations');
-    }
+    setCurrentStep('recommendations');
   };
 
   const handleGenerateItinerary = async () => {
@@ -319,22 +312,6 @@ export default function PlannerPage() {
                     <option value="fast">Fast</option>
                   </select>
                 </div>
-              </div>
-
-              {/* All Inclusive Option */}
-              <div className="border-t pt-6">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={preferences.allInclusive}
-                    onChange={(e) => setPreferences({ ...preferences, allInclusive: e.target.checked })}
-                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-                  />
-                  <div>
-                    <span className="text-sm font-semibold text-gray-900">All-Inclusive Package</span>
-                    <p className="text-xs text-gray-600">Flight, hotel, meals, and activities included in one package</p>
-                  </div>
-                </label>
               </div>
 
               <div className="flex gap-4">

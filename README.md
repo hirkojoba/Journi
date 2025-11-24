@@ -10,6 +10,18 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 - Generate a personalized day-by-day itinerary
 - Export everything as a PDF
 
+## Tech Stack
+
+**Frontend:** Next.js, React, JavaScript, TypeScript, Tailwind CSS
+
+**Backend:** Node.js, Next.js API Routes
+
+**Database:** Prisma ORM, SQLite
+
+**AI:** OpenAI API (GPT-4o mini)
+
+**Other:** pdf-lib, QRCode
+
 ## Screenshots
 
 ### Homepage
@@ -26,15 +38,3 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 
 ### Your Generated Travel Itinerary
 ![Your Generated Travel Itinerary](screenshots/your%20generated%20travel%20itinerary.jpeg)
-
-## Tech Stack
-
-**Frontend:** Next.js, React, JavaScript, TypeScript, Tailwind CSS
-
-**Backend:** Node.js, Next.js API Routes
-
-**Database:** Prisma ORM, SQLite
-
-**AI:** OpenAI API (GPT-4o mini)
-
-**Other:** pdf-lib, QRCode

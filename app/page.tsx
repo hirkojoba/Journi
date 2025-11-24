@@ -2,15 +2,26 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
-      <div className="max-w-4xl text-center">
-        <h1 className="text-7xl font-bold text-gray-900 mb-6">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center px-4 relative"
+      style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2000)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      <div className="max-w-4xl text-center relative z-10">
+        <h1 className="text-7xl font-bold text-white mb-6 drop-shadow-lg">
           Journi
         </h1>
-        <p className="text-2xl text-gray-700 mb-4">
+        <p className="text-2xl text-white mb-4 drop-shadow-md">
           AI-Powered Multimodal Travel Planner
         </p>
-        <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-lg text-white mb-12 max-w-2xl mx-auto drop-shadow-md">
           Plan your perfect trip using text preferences or screenshot uploads.
           Let AI extract travel details, recommend the best options,
           and generate your personalized itinerary.
@@ -19,7 +30,7 @@ export default function Home() {
         <div className="mb-16">
           <Link
             href="/planner"
-            className="inline-block px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+            className="inline-block px-10 py-4 bg-white text-blue-600 text-lg font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-2xl"
           >
             Plan Your Trip
           </Link>

@@ -12,4 +12,4 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 
 ## Built with
 
-Next.js, React, TypeScript, Tailwind CSS, Prisma, and OpenAI
+Next.js, React, JavaScript, TypeScript, Tailwind CSS, Node.js, Prisma, SQLite, OpenAI API, pdf-lib

@@ -1,12 +1,16 @@
-# Exclude build and generated files from language statistics
+# Exclude screenshots and images from language statistics
+screenshots/** linguist-documentation
+*.jpeg linguist-documentation
+*.jpg linguist-documentation
+*.png linguist-documentation
+*.gif linguist-documentation
+*.Zone.Identifier linguist-generated
+
+# Exclude build and generated files
 .next/** linguist-generated
-*.jpeg linguist-generated
-*.jpg linguist-generated
-*.png linguist-generated
-*.gif linguist-generated
 
-# Mark CSS files properly
-*.css linguist-language=CSS
+# Mark Prisma schema
+*.prisma linguist-language=Prisma
 
-# Mark config files
-*.json linguist-language=JSON
+# Ensure CSS is properly counted
+*.css linguist-detectable=true

@@ -1,0 +1,12 @@
+# Exclude build and generated files from language statistics
+.next/** linguist-generated
+*.jpeg linguist-generated
+*.jpg linguist-generated
+*.png linguist-generated
+*.gif linguist-generated
+
+# Mark CSS files properly
+*.css linguist-language=CSS
+
+# Mark config files
+*.json linguist-language=JSON

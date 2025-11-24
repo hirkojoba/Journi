@@ -11,7 +11,7 @@ export default function Home() {
           AI-Powered Multimodal Travel Planner
         </p>
         <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-          Plan your perfect trip using text, voice, or screenshots.
+          Plan your perfect trip using text preferences or screenshot uploads.
           Let AI extract travel details, recommend the best options,
           and generate your personalized itinerary.
         </p>

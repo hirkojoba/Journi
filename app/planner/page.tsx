@@ -195,7 +195,7 @@ export default function PlannerPage() {
                     type="text"
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     placeholder="e.g., Vancouver"
                     required
                   />
@@ -209,7 +209,7 @@ export default function PlannerPage() {
                     type="number"
                     value={preferences.budget}
                     onChange={(e) => setPreferences({ ...preferences, budget: parseInt(e.target.value) })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     min="0"
                   />
                 </div>
@@ -222,7 +222,7 @@ export default function PlannerPage() {
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     required
                   />
                 </div>
@@ -235,7 +235,7 @@ export default function PlannerPage() {
                     type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                     required
                   />
                 </div>
@@ -247,7 +247,7 @@ export default function PlannerPage() {
                   <select
                     value={preferences.vibe}
                     onChange={(e) => setPreferences({ ...preferences, vibe: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                   >
                     <option value="adventure">Adventure</option>
                     <option value="relaxing">Relaxing</option>
@@ -264,7 +264,7 @@ export default function PlannerPage() {
                   <select
                     value={preferences.pace}
                     onChange={(e) => setPreferences({ ...preferences, pace: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                   >
                     <option value="slow">Slow</option>
                     <option value="medium">Medium</option>
@@ -289,7 +289,7 @@ export default function PlannerPage() {
             {flights.length > 0 && (
               <Card title="Recommended Flight">
                 <div className="p-4 bg-blue-50 rounded-lg">
-                  <p className="font-semibold text-lg">{flights[0].airline}</p>
+                  <p className="font-semibold text-lg text-gray-900">{flights[0].airline}</p>
                   <p className="text-gray-700">{flights[0].departure_time} - {flights[0].arrival_time}</p>
                   <p className="text-gray-600">Duration: {flights[0].duration}</p>
                   <p className="text-2xl font-bold text-blue-600 mt-2">${flights[0].price}</p>
@@ -300,7 +300,7 @@ export default function PlannerPage() {
             {hotels.length > 0 && (
               <Card title="Recommended Hotel">
                 <div className="p-4 bg-green-50 rounded-lg">
-                  <p className="font-semibold text-lg">{hotels[0].name}</p>
+                  <p className="font-semibold text-lg text-gray-900">{hotels[0].name}</p>
                   <p className="text-gray-700">{hotels[0].location}</p>
                   <p className="text-gray-600">Rating: {hotels[0].rating}/5</p>
                   <p className="text-2xl font-bold text-green-600 mt-2">${hotels[0].price_per_night}/night</p>
@@ -330,7 +330,7 @@ export default function PlannerPage() {
               <div className="space-y-4">
                 {itineraryData.itinerary?.map((day: any, index: number) => (
                   <div key={index} className="p-4 bg-gray-50 rounded-lg">
-                    <h4 className="font-bold text-lg mb-2">Day {day.day}</h4>
+                    <h4 className="font-bold text-lg mb-2 text-gray-900">Day {day.day}</h4>
                     {day.morning && (
                       <div className="mb-2">
                         <span className="font-semibold text-sm text-gray-600">Morning:</span>

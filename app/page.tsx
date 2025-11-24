@@ -69,20 +69,6 @@ export default function Home() {
             </p>
           </div>
         </div>
-
-        {/* Tech Stack */}
-        <div className="mt-16 p-6 bg-white rounded-xl shadow-lg">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">Built With</h3>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">Next.js 14</span>
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">React</span>
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">TypeScript</span>
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">Tailwind CSS</span>
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">Prisma ORM</span>
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">OpenAI GPT-4o</span>
-            <span className="px-4 py-2 bg-gray-100 rounded-lg">Azure SQL</span>
-          </div>
-        </div>
       </div>
     </div>
   );

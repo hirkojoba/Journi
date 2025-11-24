@@ -72,11 +72,11 @@ export async function POST(request: NextRequest) {
         data: flights.map((flight) => ({
           tripId: trip.id,
           airline: flight.airline,
-          price: flight.price,
+          price: parseInt(flight.price) || 0,
           departTime: flight.departure_time || flight.departTime,
           arriveTime: flight.arrival_time || flight.arriveTime,
           duration: flight.duration,
-          stopovers: flight.stopovers || 0,
+          stopovers: parseInt(flight.stopovers) || 0,
         })),
       });
     }
@@ -87,8 +87,8 @@ export async function POST(request: NextRequest) {
         data: hotels.map((hotel) => ({
           tripId: trip.id,
           name: hotel.name,
-          pricePerNight: hotel.price_per_night || hotel.pricePerNight,
-          rating: hotel.rating,
+          pricePerNight: parseInt(hotel.price_per_night || hotel.pricePerNight) || 0,
+          rating: parseFloat(hotel.rating) || 0,
           location: hotel.location || 'Unknown',
         })),
       });

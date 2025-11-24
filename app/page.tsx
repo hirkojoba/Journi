@@ -30,7 +30,7 @@ export default function Home() {
         <div className="mb-16">
           <Link
             href="/planner"
-            className="inline-block px-10 py-4 bg-white text-blue-600 text-lg font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-2xl"
+            className="inline-block px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-lg font-bold rounded-lg hover:from-orange-600 hover:to-pink-600 transition-all shadow-2xl transform hover:scale-105"
           >
             Plan Your Trip
           </Link>

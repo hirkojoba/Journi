@@ -83,17 +83,30 @@ export async function generateItinerary(params: {
     const endDate = dates[dates.length - 1];
     const numDays = dates.length;
 
+    const flightCost = selectedFlight ? selectedFlight.price : 0;
+    const hotelCost = selectedHotel ? selectedHotel.pricePerNight * numDays : 0;
+    const remainingBudget = preferences.budget - flightCost - hotelCost;
+
     const prompt = `Create a detailed daily travel itinerary for a trip to ${destination} from ${startDate} to ${endDate} (${numDays} days).
 
 User preferences:
-- Budget: $${preferences.budget}
+- TOTAL BUDGET: $${preferences.budget} (STRICT - DO NOT EXCEED)
 - Trip vibe: ${preferences.vibe}
 - Purpose: ${preferences.purpose || 'leisure'}
 - Food preferences: ${preferences.food?.join(', ') || 'flexible'}
 - Pace: ${preferences.pace || 'medium'}
 
 ${selectedFlight ? `Selected flight: ${selectedFlight.airline}, $${selectedFlight.price}` : ''}
-${selectedHotel ? `Selected hotel: ${selectedHotel.name}, $${selectedHotel.pricePerNight}/night` : ''}
+${selectedHotel ? `Selected hotel: ${selectedHotel.name}, $${selectedHotel.pricePerNight}/night for ${numDays} nights = $${hotelCost}` : ''}
+
+BUDGET BREAKDOWN:
+- Flight cost: $${flightCost}
+- Hotel cost: $${hotelCost}
+- Remaining for activities/food: $${remainingBudget}
+- TOTAL MUST NOT EXCEED: $${preferences.budget}
+
+IMPORTANT: The estimated_total_cost in your response MUST be less than or equal to $${preferences.budget}.
+Calculate daily costs carefully to stay within budget. Include flight and hotel costs in the total.
 
 Return ONLY valid JSON with this exact structure:
 {
@@ -108,10 +121,10 @@ Return ONLY valid JSON with this exact structure:
     }
   ],
   "summary": "A brief 2-3 sentence overview of the trip",
-  "estimated_total_cost": 2500
+  "estimated_total_cost": ${preferences.budget - 100}
 }
 
-Make the itinerary engaging, realistic, and aligned with the user's preferences.`;
+Make the itinerary engaging, realistic, and aligned with the user's preferences while STRICTLY staying within the $${preferences.budget} budget.`;
 
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
@@ -119,7 +132,7 @@ Make the itinerary engaging, realistic, and aligned with the user's preferences.
         {
           role: 'system',
           content:
-            'You are a professional travel planner. Create detailed, realistic itineraries in JSON format.',
+            'You are a professional travel planner who ALWAYS respects budget constraints. Create detailed, realistic itineraries in JSON format that NEVER exceed the specified budget.',
         },
         {
           role: 'user',

@@ -207,19 +207,12 @@ export default function PlannerPage() {
 
         {/* Step 1: Upload */}
         {currentStep === 'upload' && (
-          <Card title="Upload Travel Screenshots (Optional)">
+          <Card title="Upload Travel Screenshots">
             <p className="text-gray-600 mb-6">
-              Upload screenshots of flight or hotel options, or skip to enter your preferences manually
+              Upload screenshots of flight or hotel options to get started
             </p>
             <FileUpload onFileSelect={handleFileUpload} />
             {isLoading && <p className="mt-4 text-center text-gray-600">Processing image...</p>}
-            {!isLoading && (
-              <div className="mt-6 text-center">
-                <Button variant="outline" onClick={() => setCurrentStep('preferences')}>
-                  Skip - Enter Preferences Manually
-                </Button>
-              </div>
-            )}
           </Card>
         )}
 

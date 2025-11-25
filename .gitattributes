@@ -6,11 +6,13 @@ screenshots/** linguist-vendored
 *.gif linguist-vendored
 *.svg linguist-vendored
 
-# Exclude metadata files
+# Exclude auto-generated and lock files
+package-lock.json linguist-generated
 *.Zone.Identifier linguist-generated
 
 # Mark documentation
 *.md linguist-documentation
+README.md linguist-documentation
 
 # Ensure all code languages are detected
 *.ts linguist-detectable=true linguist-language=TypeScript
@@ -19,4 +21,5 @@ screenshots/** linguist-vendored
 *.jsx linguist-detectable=true linguist-language=JavaScript
 *.css linguist-detectable=true linguist-language=CSS
 *.prisma linguist-detectable=true linguist-language=Prisma
-*.json linguist-detectable=true linguist-language=JSON
+package.json linguist-language=JSON
+tsconfig.json linguist-language=JSON

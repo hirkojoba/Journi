@@ -21,7 +21,7 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 
 **Backend:** Node.js, Next.js API Routes
 
-**Database:** Prisma ORM, PostgreSQL
+**Database:** Prisma ORM, PostgreSQL (Railway) for production, SQLite for local development
 
 **AI:** OpenAI API (GPT-4o mini)
 

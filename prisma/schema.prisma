@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -48,6 +48,6 @@ model Hotel {
 model Itinerary {
   id       String @id @default(uuid())
   tripId   String @unique
-  jsonData String // SQLite doesn't have Json type, so we use String
+  jsonData String // Storing as String for compatibility
   trip     Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
 }

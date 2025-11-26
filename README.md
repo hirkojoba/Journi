@@ -2,6 +2,11 @@
 
 An AI-powered travel planner that lets you upload screenshots of flights and hotels. The app figures out the best options for you and builds a custom itinerary based on your budget and preferences.
 
+## Live Demo
+
+- **Azure Deployment**: https://journi-a8dsesf9h7efamfx.canadacentral-01.azurewebsites.net
+- **Railway Deployment**: https://journi-production.up.railway.app
+
 ## What it does
 
 - Upload screenshots of flight and hotel options
@@ -16,9 +21,13 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 
 **Backend:** Node.js, Next.js API Routes
 
-**Database:** Prisma ORM, SQLite
+**Database:** Prisma ORM, PostgreSQL
 
 **AI:** OpenAI API (GPT-4o mini)
+
+**Deployment:** Azure App Service, Railway
+
+**CI/CD:** GitHub Actions
 
 **Other:** pdf-lib, QRCode
 

@@ -5,7 +5,6 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 ## Live Demo
 
 - **Azure Deployment**: https://journi-a8dsesf9h7efamfx.canadacentral-01.azurewebsites.net
-- **Railway Deployment**: https://journi-production.up.railway.app
 
 ## What it does
 

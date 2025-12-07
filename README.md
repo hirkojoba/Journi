@@ -16,19 +16,12 @@ An AI-powered travel planner that lets you upload screenshots of flights and hot
 
 ## Tech Stack
 
-**Frontend:** Next.js, React, JavaScript, TypeScript, Tailwind CSS
-
-**Backend:** Node.js, Next.js API Routes
-
-**Database:** Prisma ORM, PostgreSQL
-
-**AI:** OpenAI API (GPT-4o mini)
-
-**Deployment:** Azure App Service, Railway
-
-**CI/CD:** GitHub Actions
-
-**Other:** pdf-lib, QRCode
+- **Languages:** TypeScript, JavaScript  
+- **Frontend:** React, Next.js, Tailwind CSS  
+- **Backend:** Node.js (Next.js API Routes)  
+- **Database:** PostgreSQL, Prisma ORM  
+- **AI:** OpenAI API  
+- **Cloud Deployment:** Azure App Service
 
 ## Screenshots
 

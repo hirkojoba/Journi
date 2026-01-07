@@ -32,11 +32,17 @@ jobs:
           npm install
           npm run build --if-present
 
+      - name: Copy standalone build
+        run: |
+          cp -r .next/standalone ./standalone-build
+          cp -r .next/static ./standalone-build/.next/static
+          cp -r public ./standalone-build/public
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: ./standalone-build
 
   deploy:
     runs-on: ubuntu-latest

@@ -32,11 +32,12 @@ jobs:
           npm install
           npm run build --if-present
 
-      - name: Copy standalone build
+      - name: Prepare standalone build
         run: |
-          cp -r .next/standalone ./standalone-build
-          cp -r .next/static ./standalone-build/.next/static
-          if [ -d "public" ]; then cp -r public ./standalone-build/public; fi
+          mkdir -p standalone-build/.next
+          cp -r .next/standalone/* standalone-build/
+          cp -r .next/static standalone-build/.next/static
+          if [ -d "public" ]; then cp -r public standalone-build/public; fi
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4

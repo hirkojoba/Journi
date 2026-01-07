@@ -36,7 +36,7 @@ jobs:
         run: |
           cp -r .next/standalone ./standalone-build
           cp -r .next/static ./standalone-build/.next/static
-          cp -r public ./standalone-build/public
+          if [ -d "public" ]; then cp -r public ./standalone-build/public; fi
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4

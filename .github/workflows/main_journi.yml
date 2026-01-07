@@ -34,10 +34,13 @@ jobs:
 
       - name: Prepare standalone build
         run: |
-          mkdir -p standalone-build/.next
+          mkdir -p standalone-build
           cp -r .next/standalone/* standalone-build/
-          cp -r .next/static standalone-build/.next/static
-          if [ -d "public" ]; then cp -r public standalone-build/public; fi
+          cp -r .next/static standalone-build/.next/
+          cp -r public standalone-build/public || true
+          cp .next/BUILD_ID standalone-build/.next/BUILD_ID
+          cp .next/package.json standalone-build/.next/package.json || true
+          cp .next/routes-manifest.json standalone-build/.next/routes-manifest.json || true
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
